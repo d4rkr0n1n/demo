@@ -1,0 +1,21 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+value: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: development
+value: development
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: production
+value: production
