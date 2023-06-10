@@ -1,21 +1,20 @@
-FROM openjdk:17 as base
+FROM eclipse-temurin:17-jdk-jammy as base
 WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 RUN ./mvnw dependency:resolve
 COPY src ./src
 
-FROM base as build
-RUN ./mvnw package
+ENTRYPOINT ["./mvnw", "spring-boot:run"]
 
 FROM base as local
-CMD ["./mvnw", "spring-boot:run","-Dspring-boot.run.profiles=local"]
+CMD ["-Dspring-boot.run.profiles=local"]
 
 FROM base as development
-CMD ["./mvnw", "spring-boot:run","-Dspring-boot.run.profiles=development"]
+CMD ["-Dspring-boot.run.profiles=development"]
 
-FROM base as test
-CMD ["./mvnw", "test"]
+FROM base as build
+RUN ./mvnw package
 
 FROM eclipse-temurin:17-jre-jammy as production
 EXPOSE 8080
