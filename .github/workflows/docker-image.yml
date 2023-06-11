@@ -27,4 +27,4 @@ jobs:
         target: development
         file: ./Dockerfile
         push: true
-        tags: demo.goharbor.io/${{ secrets.HARBOR_USERNAME }}/demo:latest
+        tags: demo.goharbor.io/${{ secrets.HARBOR_USERNAME }}/demo-harbor:${{ github.run_number }}
