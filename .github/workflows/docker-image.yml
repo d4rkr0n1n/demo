@@ -32,5 +32,6 @@ jobs:
       with:
         context: .
         push: true
+        target: local
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
